@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>多头注意力输出门控调试台</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>多头注意力 · 输出门控调试台</h1>
+    <p class="sub">CPU/浏览器内稳定缩放点积注意力。门在<b>各头注意力输出之后、头拼接与 Wo 投影之前</b>乘以 sigmoid 分数。</p>
+  </header>
+
+  <div class="toolbar">
+    <label class="seg">
+      粒度
+      <label><input type="radio" name="mode" value="scalar" /> 整头标量门</label>
+      <label><input type="radio" name="mode" value="vector" /> 逐元素向量门</label>
+    </label>
+    <label class="seg"><input type="checkbox" id="gated" /> 启用门控（取消=暂停，查看无门基线）</label>
+    <button id="reset" type="button">重置为固定种子小数据</button>
+  </div>
+
+  <div id="mode-prompt" class="mode-prompt" hidden></div>
+  <div id="status"></div>
+
+  <main class="layout">
+    <section class="panel editors">
+      <h2>可编辑参数</h2>
+      <p class="hint">空格/逗号分隔列，换行分隔行；mask 仅允许 0/1。非法输入会保留在文本框内并标红，<b>不会覆盖上次有效结果</b>。</p>
+      <div id="editors"></div>
+    </section>
+    <section class="panel viz">
+      <h2>同步可视化与数值表</h2>
+      <div id="results"></div>
+    </section>
+  </main>
+
+  <footer>
+    门仅缩放对应头的注意力输出，不改变注意力权重；全屏蔽查询行输出强制为 0。
+  </footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

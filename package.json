@@ -1,0 +1,16 @@
+{
+  "name": "gated-output-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "浏览器内多头注意力输出门控调试台（纯 Node + 原生 JS，无第三方运行时依赖）",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server/server.js",
+    "build": "node scripts/build.js",
+    "test": "node --experimental-vm-modules --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
